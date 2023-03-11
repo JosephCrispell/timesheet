@@ -4,7 +4,7 @@
 
 ## `precommit` installation
 
-Install python `pre-commit`:
+Install python `pre-commit` with:
 ```bash
 pip install pre-commit
 ```
