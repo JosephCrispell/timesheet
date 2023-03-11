@@ -1,2 +1,17 @@
 # timesheet
 [IN DEVELOPMENT] a tool for tracking the hours you work
+
+
+## `precommit` installation
+
+Install python `pre-commit`:
+```bash
+pip install pre-commit
+```
+
+Within repository folder run:
+```bash
+pre-commit install
+```
+
+The hooks within `.pre-commit-config.yaml` will now be triggered everytime you use the `git commit` command. For more information see [https://pre-commit.com/](https://pre-commit.com/).
