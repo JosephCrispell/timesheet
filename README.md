@@ -14,4 +14,4 @@ Within repository folder run:
 pre-commit install
 ```
 
-The hooks within `.pre-commit-config.yaml` will now be triggered every time you use the `git commit` command. For more information see [https://pre-commit.com/](https://pre-commit.com/).
+The hooks within `.pre-commit-config.yaml` will now be triggered every time you use the `git commit` command. For more information see [pre-commit.com/](https://pre-commit.com/).
