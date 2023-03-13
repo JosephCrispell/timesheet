@@ -4,7 +4,7 @@ from timesheet import timesheet
 def main():
 
     # Get timesheet
-    logging_data = timesheet.Timesheet()
+    my_timesheet = timesheet.Timesheet()
 
 
 if __name__ == "__main__":
