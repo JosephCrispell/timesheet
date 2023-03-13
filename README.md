@@ -1,3 +1,5 @@
+ [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # timesheet
 [IN DEVELOPMENT] a tool for tracking the hours you work
 
@@ -59,3 +61,7 @@ For example to run tests on `timesheet.py`:
 ```bash
 python3 tests/test_timesheet.py
 ```
+
+For more information see:
+- [`unittest`](https://docs.python.org/3/library/unittest.html) package
+0 [Tutorial I found helpful](https://realpython.com/python-testing/)
