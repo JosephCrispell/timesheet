@@ -64,4 +64,4 @@ python3 tests/test_timesheet.py
 
 For more information see:
 - [`unittest`](https://docs.python.org/3/library/unittest.html) package
-0 [Tutorial I found helpful](https://realpython.com/python-testing/)
+- [Tutorial I found helpful](https://realpython.com/python-testing/)
