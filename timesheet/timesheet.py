@@ -11,13 +11,13 @@ class Timesheet:
                 Defaults to Path("outputs/timesheet.csv").
         """
         self.file_name = file_name
-        self.timesheet = self.read_timesheet()
+        self.read_timesheet()
 
     def create_timesheet(self):
         """Creates timesheet CSV file"""
         # Initialise dataframe
         self.timesheet = pd.DataFrame(
-            columns=["date", "start_time", "end_time", "hh:mm", "notes"]
+            columns=["date", "start_time", "end_time", "time_worked", "notes"]
         )
 
         # Write to file
@@ -32,3 +32,13 @@ class Timesheet:
 
         # Read in timesheet
         self.timesheet = pd.read_csv(self.file_name)
+
+        # Convert date and time columns to datetime objects
+        self.timesheet["date"] = pd.to_datetime(self.timesheet["date"])
+        self.timesheet["start_time"] = pd.to_datetime(
+            self.timesheet["start_time"], format="%H:%M:%S"
+        )
+        self.timesheet["end_time"] = pd.to_datetime(
+            self.timesheet["end_time"], format="%H:%M:%S"
+        )
+        self.timesheet["time_worked"] = pd.to_timedelta(self.timesheet["time_worked"])
