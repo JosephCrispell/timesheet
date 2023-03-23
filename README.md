@@ -35,6 +35,25 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
  ┗ 📜setup.py
 ```
 
+## Workflow
+I created the following simple diagram using [mermaid]() to show how the code and outputs link together.
+
+```mermaid
+  graph TD
+    timesheet[timesheet/timesheet.py] --> data(outputs/timesheet.csv);
+    data .-> timesheet;
+    timesheet .->|interaction| test_timesheet[tests/test_timesheet.py];
+    test_timesheet -->|creation or updating| test_data(outputs/test_timesheet.csv);
+    test_data .-> timesheet;
+    timesheet .-> test_data;
+    timesheet --> main[scripts/main.py];
+    subgraph "key"
+        k1[script];
+        k2(output);
+    end
+```
+
+
 ## For development
 
 ### `precommit` installation
