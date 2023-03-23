@@ -43,6 +43,7 @@ I created the following simple diagram using [mermaid]() to show how the code an
     timesheet[timesheet/timesheet.py] --> data(outputs/timesheet.csv);
     data .-> timesheet;
     timesheet .->|interaction| test_timesheet[tests/test_timesheet.py];
+    dummy_data_functions[tests/dummy_data_functions.py] .-> test_timesheet
     test_timesheet -->|creation or updating| test_data(outputs/test_timesheet.csv);
     test_data .-> timesheet;
     timesheet .-> test_data;
