@@ -47,7 +47,7 @@ I created the following simple diagram using [mermaid]() to show how the code an
     test_timesheet -->|creation or updating| test_data(outputs/test_timesheet.csv);
     test_data .-> timesheet;
     timesheet .-> test_data;
-    timesheet --> main[scripts/main.py];
+    timesheet .-> main[scripts/main.py];
     subgraph "key"
         k1[script];
         k2(output);
