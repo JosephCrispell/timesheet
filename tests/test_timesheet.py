@@ -5,7 +5,7 @@ import pandas as pd  # creating dummy data
 
 # Local imports
 from timesheet import timesheet  # timesheet class
-from dummy_functions import *  # functions to create dummy data
+from dummy_data_functions import *  # functions to create dummy data
 
 
 class TestTimesheet(unittest.TestCase):

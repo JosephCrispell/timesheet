@@ -1,11 +1,9 @@
-from datetime import date, time, datetime  # working with dates and times
+from datetime import date, time, datetime, timedelta  # working with dates and times
 from pathlib import Path  # handling file paths
 import pandas as pd  # creating dummy data
 
 
-def calculate_time_difference(
-    start_time: datetime.time, end_time: datetime.time
-) -> datetime.timedelta:
+def calculate_time_difference(start_time: time, end_time: time) -> timedelta:
     """Calculate difference between start and end time
 
     Args:
@@ -31,8 +29,8 @@ def calculate_time_difference(
 
 
 def calculate_time_differences(
-    start_times: list[datetime.time], end_times: list[datetime.time]
-) -> list[datetime.timedelta]:
+    start_times: list[time], end_times: list[time]
+) -> list[timedelta]:
     """Calculate difference between times
 
     Based on this stackoverflow answer: https://stackoverflow.com/questions/25346019/subtract-datetime-time-objects-stored-in-two-separate-lists
