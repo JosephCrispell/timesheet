@@ -3,12 +3,39 @@ from pathlib import Path  # handling file paths
 import pandas as pd  # creating dummy data
 
 
+def calculate_time_difference(
+    start_time: datetime.time, end_time: datetime.time
+) -> datetime.timedelta:
+    """Calculate difference between start and end time
+
+    Args:
+        start_time (datetime.time): start time
+        end_time (datetime.time): end time
+
+    Returns:
+        datetime.time: difference between start and end time
+    """
+
+    # Calculate time difference
+    difference = datetime.combine(date.today(), end_time) - datetime.combine(
+        date.today(), start_time
+    )
+
+    # Check time difference is positive
+    if difference.total_seconds() < 0:
+        raise Exception(
+            f"The end_time provided ({end_time}) is not after the start_time ({start_time})"
+        )
+
+    return difference
+
+
 def calculate_time_differences(
     start_times: list[datetime.time], end_times: list[datetime.time]
-) -> list[datetime.time]:
+) -> list[datetime.timedelta]:
     """Calculate difference between times
 
-    Based on this staackoverflow answer: https://stackoverflow.com/questions/25346019/subtract-datetime-time-objects-stored-in-two-separate-lists
+    Based on this stackoverflow answer: https://stackoverflow.com/questions/25346019/subtract-datetime-time-objects-stored-in-two-separate-lists
 
     Args:
         start_times (list[datetime.time]): list of start times
@@ -20,8 +47,7 @@ def calculate_time_differences(
 
     # Calculate time differences
     differences = [
-        datetime.combine(date.today(), end_time)
-        - datetime.combine(date.today(), start_time)
+        calculate_time_difference(start_time, end_time)
         for start_time, end_time in zip(start_times, end_times)
     ]
 
