@@ -6,6 +6,9 @@ def main():
     # Get timesheet
     my_timesheet = timesheet.Timesheet()
 
+    # Add start time
+    my_timesheet.add_start_time()
+
 
 if __name__ == "__main__":
     main()
