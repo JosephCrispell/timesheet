@@ -64,24 +64,29 @@ class Timesheet:
         current_date = current_datetime.date()
 
         # Get current time
-        start_time = current_datetime.time()
+        start_time = current_datetime
 
         # Check if a start time provided
         if start_time_string != None:
 
             hours, minutes = map(int, start_time_string.split(":"))
-            start_time = time(hour=hours, minute=minutes)
+            start_time = datetime.combine(
+                current_date, time(hour=hours, minute=minutes)
+            )
 
         # Add date and start time to timesheet
         new_timesheet_record = {
-            "date": current_date,
-            "start_time": start_time,
+            "date": pd.Timestamp(current_date),
+            "start_time": pd.Timestamp(start_time),
             "end_time": None,
             "time_worked": None,
             "notes": "",
         }
         new_timesheet_record = pd.DataFrame([new_timesheet_record])
         self.timesheet = pd.concat([self.timesheet, new_timesheet_record])
+
+        # Reset dataframe index
+        self.timesheet = self.timesheet.reset_index(drop=True)
 
         # Write updated timesheet to file
         self.write_timesheet()
@@ -92,4 +97,16 @@ class Timesheet:
         Timesheet written to self.file_name (set in __init__), overwrites current content
         """
 
-        self.timesheet.to_csv(self.file_name, index=False)
+        # Create a copy of the dataframe
+        my_timesheet = self.timesheet.copy()
+
+        # Format the date and time columns as strings
+        my_timesheet.date = my_timesheet.date.dt.strftime("%Y-%m-%d")
+        my_timesheet.start_time = my_timesheet.start_time.dt.strftime("%H:%M:%S")
+        my_timesheet.end_time = my_timesheet.end_time.dt.strftime("%H:%M:%S")
+        my_timesheet.time_worked = my_timesheet.time_worked.astype(str).str[
+            8:
+        ]  # strips out number days
+
+        # Write to file
+        my_timesheet.to_csv(self.file_name, index=False)
