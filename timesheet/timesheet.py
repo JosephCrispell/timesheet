@@ -44,12 +44,14 @@ class Timesheet:
         # Convert date and time columns to datetime objects
         self.timesheet["date"] = pd.to_datetime(self.timesheet["date"])
         self.timesheet["start_time"] = pd.to_datetime(
-            self.timesheet["start_time"], format="%H:%M:%S"
+            self.timesheet["start_time"], format="%H:%M"
         )
         self.timesheet["end_time"] = pd.to_datetime(
-            self.timesheet["end_time"], format="%H:%M:%S"
+            self.timesheet["end_time"], format="%H:%M"
         )
-        self.timesheet["time_worked"] = pd.to_timedelta(self.timesheet["time_worked"])
+        self.timesheet["time_worked"] = pd.to_timedelta(
+            self.timesheet["time_worked"] + ":00"
+        )
 
     def add_start_time(self, start_time_string: str = None):
         """Add start time to timesheet
@@ -92,7 +94,7 @@ class Timesheet:
         self.write_timesheet()
 
     def write_timesheet(self):
-        """Write tiemsheet to file
+        """Write timesheet to file
 
         Timesheet written to self.file_name (set in __init__), overwrites current content
         """
@@ -102,10 +104,10 @@ class Timesheet:
 
         # Format the date and time columns as strings
         my_timesheet.date = my_timesheet.date.dt.strftime("%Y-%m-%d")
-        my_timesheet.start_time = my_timesheet.start_time.dt.strftime("%H:%M:%S")
-        my_timesheet.end_time = my_timesheet.end_time.dt.strftime("%H:%M:%S")
+        my_timesheet.start_time = my_timesheet.start_time.dt.strftime("%H:%M")
+        my_timesheet.end_time = my_timesheet.end_time.dt.strftime("%H:%M")
         my_timesheet.time_worked = my_timesheet.time_worked.astype(str).str[
-            8:
+            -8:-3
         ]  # strips out number days
 
         # Write to file
