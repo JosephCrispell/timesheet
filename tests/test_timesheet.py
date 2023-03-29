@@ -5,7 +5,7 @@ import pandas as pd  # creating dummy data
 
 # Local imports
 from timesheet import timesheet  # timesheet class
-from dummy_data_functions import *  # functions to create dummy data
+from timesheet import data_functions  # functions for working with data
 
 
 class TestTimesheet(unittest.TestCase):
@@ -30,7 +30,7 @@ class TestTimesheet(unittest.TestCase):
 
         # Create a dummy timesheet
         timesheet_file = Path("outputs/test_timesheet.csv")
-        create_dummy_timesheet(file_name=timesheet_file)
+        data_functions.create_dummy_timesheet(file_name=timesheet_file)
 
         # Load dummy timesheet
         my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
@@ -79,6 +79,8 @@ class TestTimesheet(unittest.TestCase):
 
         # Remove timesheet
         Path.unlink(timesheet_file)
+
+    # TODO add test for add start time
 
 
 if __name__ == "__main__":
