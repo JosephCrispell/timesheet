@@ -1,6 +1,10 @@
+# Load packages
 from pathlib import Path  # handling file paths
 import pandas as pd  # working with data
 from datetime import time, datetime  # working with dates and times
+
+# Local imports
+from . import data_functions  # general functions for working with data
 
 
 class Timesheet:
@@ -103,12 +107,7 @@ class Timesheet:
         my_timesheet = self.timesheet.copy()
 
         # Format the date and time columns as strings
-        my_timesheet.date = my_timesheet.date.dt.strftime("%Y-%m-%d")
-        my_timesheet.start_time = my_timesheet.start_time.dt.strftime("%H:%M")
-        my_timesheet.end_time = my_timesheet.end_time.dt.strftime("%H:%M")
-        my_timesheet.time_worked = my_timesheet.time_worked.astype(str).str[
-            -8:-3
-        ]  # strips out number days
+        my_timesheet = data_functions.format_datetime_columns_to_strings(my_timesheet)
 
         # Write to file
         my_timesheet.to_csv(self.file_name, index=False)
