@@ -19,11 +19,11 @@ class TestTimesheet(unittest.TestCase):
         # Check timesheet file exists
         self.assertTrue(
             Path.exists(my_timesheet.file_name),
-            f"Timesheet file ({timesheet_file}) exist",
+            f"Timesheet file ({my_timesheet.file_name}) exist",
         )
 
         # Remove timesheet
-        Path.unlink(timesheet_file)
+        Path.unlink(my_timesheet.file_name)
 
     def test_timesheet_loading(self):
         """Creates dummy timesheet data and checks read in correctly"""
