@@ -79,7 +79,7 @@ pip3 install -e .
 
 For example to run tests on `timesheet.py`:
 ```bash
-python3 tests/test_timesheet.py
+python3 -m unittest
 ```
 
 For more information see:
