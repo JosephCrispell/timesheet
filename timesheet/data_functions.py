@@ -30,7 +30,7 @@ def format_datetime_columns_to_strings(my_timesheet: pd.DataFrame) -> pd.DataFra
     return my_timesheet
 
 
-def calculate_time_difference(start_time: time, end_time: time) -> timedelta:
+def calculate_time_difference(start_time: datetime, end_time: datetime) -> timedelta:
     """Calculate difference between start and end time
 
     Args:
@@ -67,6 +67,12 @@ def calculate_time_differences(
     Returns:
         list[datetime.time]: list of time differences
     """
+
+    # Check the same number of start and end times provided
+    if len(start_times) != len(end_times):
+        raise Exception(
+            f"The number of start ({len(start_times)}) and end ({len(end_times)}) times provided don't match!"
+        )
 
     # Calculate time differences
     differences = [
@@ -141,15 +147,7 @@ def create_dummy_timesheet(file_name: Path):
     dummy_timesheet_data.time_worked = pd.to_timedelta(dummy_timesheet_data.time_worked)
 
     # Format the date and time columns as strings
-    # TODO import function from timesheet general functions script
-    dummy_timesheet_data.date = dummy_timesheet_data.date.dt.strftime("%Y-%m-%d")
-    dummy_timesheet_data.start_time = dummy_timesheet_data.start_time.dt.strftime(
-        "%H:%M"
-    )
-    dummy_timesheet_data.end_time = dummy_timesheet_data.end_time.dt.strftime("%H:%M")
-    dummy_timesheet_data.time_worked = dummy_timesheet_data.time_worked.astype(str).str[
-        -8:-3
-    ]  # strips out number days
+    dummy_timesheet_data = format_datetime_columns_to_strings(dummy_timesheet_data)
 
     # Write data to file
     dummy_timesheet_data.to_csv(file_name, index=False)
