@@ -27,6 +27,9 @@ def format_datetime_columns_to_strings(my_timesheet: pd.DataFrame) -> pd.DataFra
         -8:-3
     ]  # strips out number days
 
+    # Replace N values in time_worked column with empty (substring above means N was None)
+    my_timesheet.time_worked = my_timesheet.time_worked.replace("N", "")
+
     return my_timesheet
 
 

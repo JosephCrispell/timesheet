@@ -53,12 +53,20 @@ class Timesheet:
         self.timesheet["start_time"] = pd.to_datetime(
             self.timesheet["start_time"], format="%H:%M"
         )
-        self.timesheet["end_time"] = pd.to_datetime(
-            self.timesheet["end_time"], format="%H:%M"
-        )
-        self.timesheet["time_worked"] = pd.to_timedelta(
-            self.timesheet["time_worked"] + ":00"
-        )
+
+        # Check if no end time
+        if self.timesheet["end_time"].isnull().all():
+            self.timesheet["end_time"] = pd.to_datetime(self.timesheet["end_time"])
+            self.timesheet["time_worked"] = pd.to_timedelta(
+                self.timesheet["time_worked"]
+            )
+        else:
+            self.timesheet["end_time"] = pd.to_datetime(
+                self.timesheet["end_time"], format="%H:%M"
+            )
+            self.timesheet["time_worked"] = pd.to_timedelta(
+                self.timesheet["time_worked"] + ":00"
+            )
 
         # Check if any timesheet data present
         if self.timesheet.shape[0] > 0:
