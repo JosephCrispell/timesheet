@@ -16,6 +16,8 @@ class Timesheet:
                 Defaults to Path("outputs/timesheet.csv").
         """
         self.file_name = file_name
+        self.start_time = None
+        self.end_time = None
         self.read_timesheet()
 
     def create_timesheet(self):
@@ -56,6 +58,13 @@ class Timesheet:
         self.timesheet["time_worked"] = pd.to_timedelta(
             self.timesheet["time_worked"] + ":00"
         )
+
+        # Set current start and end times
+        last_row = self.timesheet.iloc[-1:]
+        time = last_row["start_time"].item()
+        self.start_time = None if pd.isnull(time) else time
+        time = last_row["end_time"].item()
+        self.end_time = None if pd.isnull(time) else time
 
     def add_start_time(self, start_time_string: str = None):
         """Add start time to timesheet
