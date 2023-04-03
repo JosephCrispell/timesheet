@@ -2,6 +2,7 @@
 from pathlib import Path  # handling file paths
 import pandas as pd  # working with data
 from datetime import time, datetime  # working with dates and times
+import warnings  # writing warnings
 
 # Local imports
 from . import data_functions  # general functions for working with data
@@ -59,12 +60,15 @@ class Timesheet:
             self.timesheet["time_worked"] + ":00"
         )
 
-        # Set current start and end times
-        last_row = self.timesheet.iloc[-1:]
-        time = last_row["start_time"].item()
-        self.start_time = None if pd.isnull(time) else time
-        time = last_row["end_time"].item()
-        self.end_time = None if pd.isnull(time) else time
+        # Check if any timesheet data present
+        if self.timesheet.shape[0] > 0:
+
+            # Set current start and end times
+            last_row = self.timesheet.iloc[-1:]
+            time = last_row["start_time"].item()
+            self.start_time = None if pd.isnull(time) else time
+            time = last_row["end_time"].item()
+            self.end_time = None if pd.isnull(time) else time
 
     def add_start_time(self, start_time_string: str = None):
         """Add start time to timesheet
@@ -89,11 +93,23 @@ class Timesheet:
                 current_date, time(hour=hours, minute=minutes)
             )
 
+        # Check if a current end_time exists
+        if self.end_time == None:
+            warnings.warn(
+                f"Adding new start time when current end_time is None. (I'd suggest reviewing and editing input timesheet)"
+            )
+
+        # Check current start is after end_time
+        elif self.end_time >= start_time:
+            raise Exception(
+                f"The start_time provided ({start_time}) is not after the cuirrent end_time ({self.end_time})"
+            )
+
         # Add date and start time to timesheet
         new_timesheet_record = {
             "date": pd.Timestamp(current_date),
             "start_time": pd.Timestamp(start_time),
-            "end_time": None,
+            "end_time": pd.Timestamp("nat"),
             "time_worked": None,
             "notes": "",
         }
@@ -105,6 +121,10 @@ class Timesheet:
 
         # Write updated timesheet to file
         self.write_timesheet()
+
+        # Set current start and end times
+        self.start_time = start_time
+        self.end_time = None
 
     def write_timesheet(self):
         """Write timesheet to file
