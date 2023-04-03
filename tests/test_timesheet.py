@@ -82,6 +82,8 @@ class TestTimesheet(unittest.TestCase):
 
     # TODO add test for add start time
 
+    # TODO add tests for empty timesheet
+
 
 if __name__ == "__main__":
     unittest.main()
