@@ -102,6 +102,7 @@ class Timesheet:
             )
 
         # Check if a current end_time exists
+        # TODO Add option to remove warning if testing
         if self.end_time == None:
             warnings.warn(
                 f"Adding new start time when current end_time is None. (Please review and edit timesheet file)"
