@@ -2,6 +2,7 @@
 import unittest  # running tests
 from pathlib import Path  # handling file paths
 import pandas as pd  # creating dummy data
+from datetime import time, datetime  # working with dates and times
 
 # Local imports
 from timesheet import timesheet  # timesheet class
@@ -80,9 +81,62 @@ class TestTimesheet(unittest.TestCase):
         # Remove timesheet
         Path.unlink(timesheet_file)
 
-    # TODO add test for add start time
+    def add_start_time_and_test(self, timesheet_file: Path):
+        """Function to add start time to timesheet file and test
 
-    # TODO add tests for empty timesheet
+        Args:
+            timesheet_file (Path): path to timesheet file
+        """
+
+        # Load dummy timesheet
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Create a start time
+        start_time_string = "08:34"
+        current_datetime = datetime.now()
+        current_date = current_datetime.date()
+        hours, minutes = map(int, start_time_string.split(":"))
+        start_time_datetime = datetime.combine(
+            current_date, time(hour=hours, minute=minutes)
+        )
+        my_timesheet.add_start_time(start_time_string)
+
+        # Check start time added
+        self.assertEqual(
+            my_timesheet.start_time,
+            start_time_datetime,
+            "Check start time added matches start time provided",
+        )
+
+        # Check start time written to file
+        my_timesheet_data = pd.read_csv(timesheet_file)
+        self.assertEqual(
+            start_time_string,
+            my_timesheet_data.iloc[-1:].start_time.item(),
+            "Check start time written to file",
+        )
+
+        # Check timesheet loading
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Remove timesheet
+        Path.unlink(timesheet_file)
+
+    def test_add_start_time_with_dummy_timesheet(self):
+        """Creates dummy timesheet data and then tests adding a start time"""
+
+        # Create a dummy timesheet
+        timesheet_file = Path("outputs/test_timesheet.csv")
+        data_functions.create_dummy_timesheet(file_name=timesheet_file)
+
+        # Add start time and test
+        self.add_start_time_and_test(timesheet_file=timesheet_file)
+
+    def test_add_start_time_with_empty_timesheet(self):
+        """Tests adding a start time to empty tiemsheet"""
+
+        # Add start time and test to empty timesheet
+        self.add_start_time_and_test(timesheet_file=Path("outputs/test_timesheet.csv"))
 
 
 if __name__ == "__main__":
