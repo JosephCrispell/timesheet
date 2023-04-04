@@ -104,7 +104,7 @@ class Timesheet:
         # Check if a current end_time exists
         if self.end_time == None:
             warnings.warn(
-                f"Adding new start time when current end_time is None. (I'd suggest reviewing and editing input timesheet)"
+                f"Adding new start time when current end_time is None. (Please review and edit timesheet file)"
             )
 
         # Check current start is after end_time
@@ -148,3 +148,5 @@ class Timesheet:
 
         # Write to file
         my_timesheet.to_csv(self.file_name, index=False)
+
+    # TODO Add add_end_time() function
