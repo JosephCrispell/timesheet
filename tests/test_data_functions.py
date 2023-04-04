@@ -1,7 +1,7 @@
 # Load packages
 import unittest  # running tests
 from pathlib import Path  # handling file paths
-from datetime import date, time, datetime, timedelta  # working with dates and times
+from datetime import datetime  # working with dates and times
 
 # Local imports
 from timesheet import data_functions  # functions for working with data
@@ -27,6 +27,7 @@ class TestDataFunctions(unittest.TestCase):
         Path.unlink(timesheet_file)
 
     def test_calculate_time_differences(self):
+        """Test function that calculates differences between two datetime lists"""
 
         # Create start and end datetimes
         start_times = [
