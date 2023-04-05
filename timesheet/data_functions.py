@@ -26,14 +26,10 @@ def format_datetime_columns_to_strings(my_timesheet: pd.DataFrame) -> pd.DataFra
     my_timesheet.time_worked = my_timesheet.time_worked.astype(str).str[
         -8:-3
     ]  # strips out number days
-    # TODO Fix warning here:
-    # - /home/josephcrispell/.local/lib/python3.10/site-packages/pandas/core/arrays/timedeltas.py:908: RuntimeWarning: invalid value encountered in cast
-    #    base = data.astype(np.int64)
-    # - /home/josephcrispell/.local/lib/python3.10/site-packages/pandas/core/arrays/timedeltas.py:912: RuntimeWarning: invalid value encountered in cast
-    #    data = (base * m + (frac * m).astype(np.int64)).view("timedelta64[ns]")
 
-    # Replace N values in time_worked column with empty (substring above means N was None)
-    my_timesheet.time_worked = my_timesheet.time_worked.replace("N", "")
+    # Replace oddly subsetted values in time_worked column with 00:00
+    # occurs when zero times sent through
+    my_timesheet.time_worked = my_timesheet.time_worked.replace("0 d", "00:00")
 
     return my_timesheet
 

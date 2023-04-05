@@ -57,16 +57,15 @@ class Timesheet:
         # Check if no end time
         if self.timesheet["end_time"].isnull().all():
             self.timesheet["end_time"] = pd.to_datetime(self.timesheet["end_time"])
-            self.timesheet["time_worked"] = pd.to_timedelta(
-                self.timesheet["time_worked"]
-            )
         else:
             self.timesheet["end_time"] = pd.to_datetime(
                 self.timesheet["end_time"], format="%H:%M"
             )
-            self.timesheet["time_worked"] = pd.to_timedelta(
-                self.timesheet["time_worked"] + ":00"
-            )
+
+        # Convert timedelta column
+        self.timesheet["time_worked"] = pd.to_timedelta(
+            self.timesheet["time_worked"] + ":00"
+        )
 
         # Check if any timesheet data present
         if self.timesheet.shape[0] > 0:
@@ -102,7 +101,6 @@ class Timesheet:
             )
 
         # Check if a current end_time exists
-        # TODO Add option to remove warning if testing
         if self.end_time == None:
             warnings.warn(
                 f"Adding new start time when current end_time is None. (Please review and edit timesheet file)"
@@ -119,7 +117,7 @@ class Timesheet:
             "date": pd.Timestamp(current_date),
             "start_time": pd.Timestamp(start_time),
             "end_time": pd.Timestamp("nat"),
-            "time_worked": None,
+            "time_worked": pd.Timedelta(15, "s"),
             "notes": "",
         }
         new_timesheet_record = pd.DataFrame([new_timesheet_record])
