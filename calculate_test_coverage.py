@@ -6,6 +6,8 @@
 
 # Generate coverage report: pythontutorial.net/python-unit-testing/python-unittest-coverage/
 
+# See existing tool: https://pypi.org/project/readme-coverage-badger/
+
 #%%
 import subprocess
 
