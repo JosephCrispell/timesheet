@@ -16,6 +16,14 @@ import pandas as pd
 
 
 def parse_coverage_report(coverage_report_byte_string: bytes) -> pd.DataFrame:
+    """Parses byte string returned by coverage report into pandas dataframe
+
+    Args:
+        coverage_report_byte_string (bytes): byte string version of coverage report
+
+    Returns:
+        pd.DataFrame: coverage report as dataframe
+    """
 
     # Convert the byte string into pandas dataframe
     coverage_dataframe = pd.read_csv(BytesIO(coverage_report_byte_string), sep="\s+")
@@ -31,6 +39,11 @@ def parse_coverage_report(coverage_report_byte_string: bytes) -> pd.DataFrame:
 
 
 def run_code_coverage() -> pd.DataFrame:
+    """Runs coverage tool in command line and returns report
+
+    Returns:
+        pd.DataFrame: coverage report as dataframe
+    """
 
     # Run code coverage calculation
     subprocess.run(["python3", "-m", "coverage", "run", "--source=.", "-m", "unittest"])
@@ -52,6 +65,19 @@ def get_badge_colour(
     medium_colour: str = "orange",
     good_colour: str = "green",
 ) -> str:
+    """Gets coverage badger colour based on value and thresholds
+
+    Args:
+        value (float): coverage value
+        poor_max_threshold (float): threshold below which badge colour is poor_colour
+        medium_max_threshold (float): threshold below which badge colour is medium_colour
+        poor_colour (str, optional): colour for badge when value <= poor_max_threshold. Defaults to "red".
+        medium_colour (str, optional): colour for badge when value <= medium_max_threshold but more than poor_max_threshold. Defaults to "orange".
+        good_colour (str, optional): colour for badge when value > medium_max_threshold. Defaults to "green".
+
+    Returns:
+        str: colour for badge
+    """
 
     badge_colour = None
     if value < poor_max_threshold:
@@ -69,6 +95,16 @@ def make_coverage_badge_url(
     poor_max_threshold: float = 25,
     medium_max_threshold: float = 75,
 ) -> str:
+    """Uses shields io to build coverage badge
+
+    Args:
+        coverage_dataframe (pd.DataFrame): coverage report as dataframe
+        poor_max_threshold (float, optional): threshold below which badge colour is red. Defaults to 25.
+        medium_max_threshold (float, optional): threshold below which badge colour is orange. Defaults to 75.
+
+    Returns:
+        str: _description_
+    """
 
     # Calculate the average code coverage
     total_statements = sum(coverage_dataframe.Stmts)
