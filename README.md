@@ -1,5 +1,5 @@
  [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
- ![Code Coverage](https://img.shields.io/badge/coverage-91.4%25-green)
+ ![Code Coverage](https://img.shields.io/badge/coverage-94.5%25-green)
 
 # timesheet
 [IN DEVELOPMENT] a tool for tracking the hours you work
@@ -90,6 +90,7 @@ For more information see:
 ### Updating coverage badge
 To update the coverage badger of this README run:
 ```python
-python update_test_coverage.py
+python scripts/update_test_coverage.py
 ```
 This script uses the [`coverage`](https://coverage.readthedocs.io/) python package to generate a coverage report and then feeds overall test coverage value into badge for this README.
+> Note must be ran from repository root as shown in above codeblock
