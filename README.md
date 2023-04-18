@@ -1,4 +1,5 @@
  [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+ ![Code Coverage](https://img.shields.io/badge/coverage-72.5%25-orange)
 
 # timesheet
 [IN DEVELOPMENT] a tool for tracking the hours you work
@@ -85,3 +86,10 @@ python3 -m unittest
 For more information see:
 - [`unittest`](https://docs.python.org/3/library/unittest.html) package
 - [Tutorial I found helpful](https://realpython.com/python-testing/)
+
+### Updating coverage badge
+To update the coverage badger of this README run:
+```python
+python update_test_coverage.py
+```
+This script uses the [`coverage`](https://coverage.readthedocs.io/) python package to generate a coverage report and then feeds overall test coverage value into badge for this README.
