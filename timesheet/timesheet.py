@@ -184,6 +184,8 @@ class Timesheet:
             )
 
         # Add end_time to timesheet
+        # Note using .loc here so change is made directly on dataframe rather than on copy/slice
+        # which would be done if used indices/names with [] or .
         self.timesheet.loc[self.timesheet.index[-1], "end_time"] = pd.Timestamp(
             end_time
         )
