@@ -109,7 +109,7 @@ class Timesheet:
         # Check current start is after end_time
         elif self.end_time >= start_time:
             raise Exception(
-                f"The start_time provided ({start_time}) is not after the cuirrent end_time ({self.end_time})"
+                f"The start_time provided ({start_time}) is not after the current end_time ({self.end_time})"
             )
 
         # Add date and start time to timesheet
@@ -148,4 +148,49 @@ class Timesheet:
         # Write to file
         my_timesheet.to_csv(self.file_name, index=False)
 
-    # TODO Add add_end_time() function
+    def add_end_time(self, end_time_string: str = None):
+        """Add end time to timesheet
+
+        Args:
+            end_time_string (str, optional): time (format: hh:mm) to use for end time
+                Defaults to None (will use current time).
+        """
+
+        # Get datetime object for now
+        current_datetime = datetime.now()
+        current_date = current_datetime.date()
+
+        # Get current time
+        end_time = current_datetime
+
+        # Check if a start time provided
+        if end_time_string != None:
+
+            hours, minutes = map(int, end_time_string.split(":"))
+            start_time = datetime.combine(
+                current_date, time(hour=hours, minute=minutes)
+            )
+
+        # Check if a current start_time exists
+        if self.start_time == None:
+            raise Exception(
+                f"Trying to add end time when start time is None (doesn't exist). (Please review and edit timesheet file)"
+            )
+
+        # Check current end is after start_time
+        elif self.start_time >= end_time:
+            raise Exception(
+                f"The end_time provided ({end_time}) is not after the current start_time ({self.start_time})"
+            )
+
+        # Add end_time to timesheet
+        self.timesheet.loc[self.timesheet.index[-1], "end_time"] = pd.Timestamp(
+            end_time
+        )
+
+        # Write updated timesheet to file
+        self.write_timesheet()
+
+        # Set current start and end times
+        self.start_time = None
+        self.end_time = end_time
