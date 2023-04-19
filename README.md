@@ -73,14 +73,19 @@ pre-commit install
 The hooks within `.pre-commit-config.yaml` will now be triggered every time you use the `git commit` command. For more information see [pre-commit.com/](https://pre-commit.com/).
 
 ### Running tests
-Unit tests for package are in `tests/` and can be called directly, after running:
+Unit tests for package are in `tests/` can be ran all together or individually, after running:
 ```bash
 pip3 install -e .
 ```
 
-For example to run tests on `timesheet.py`:
+To run all tests together:
 ```bash
 python3 -m unittest
+```
+
+To run specific tests on `timesheet.py`:
+```bash
+python3 tests/test_timesheet.py
 ```
 
 For more information see:
