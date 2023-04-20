@@ -95,6 +95,12 @@ class Timesheet:
         # Check if a start time provided
         if start_time_string != None:
 
+            # Check string format
+            data_functions.check_string_pattern_match(
+                start_time_string, pattern=r"[0-9][0-9]:[0-9][0-9]"
+            )
+
+            # Convert to time
             hours, minutes = map(int, start_time_string.split(":"))
             start_time = datetime.combine(
                 current_date, time(hour=hours, minute=minutes)
@@ -163,13 +169,17 @@ class Timesheet:
         # Get current time
         end_time = current_datetime
 
-        # Check if a start time provided
+        # Check if a end time provided
         if end_time_string != None:
 
-            hours, minutes = map(int, end_time_string.split(":"))
-            start_time = datetime.combine(
-                current_date, time(hour=hours, minute=minutes)
+            # Check string format
+            data_functions.check_string_pattern_match(
+                end_time_string, pattern=r"[0-9][0-9]:[0-9][0-9]"
             )
+
+            # Convert to time
+            hours, minutes = map(int, end_time_string.split(":"))
+            end_time = datetime.combine(current_date, time(hour=hours, minute=minutes))
 
         # Check if a current start_time exists
         if self.start_time == None:
@@ -196,3 +206,13 @@ class Timesheet:
         # Set current start and end times
         self.start_time = None
         self.end_time = end_time
+
+    def reset_timesheet(self):
+        """Reset and empty timesheet"""
+
+        # Create new empty timesheet
+        self.create_timesheet()
+
+        # Reset start and end times
+        self.start_time = None
+        self.end_time = None
