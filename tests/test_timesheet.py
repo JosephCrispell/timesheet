@@ -139,6 +139,7 @@ class TestTimesheet(unittest.TestCase):
         self.add_start_time_and_test(timesheet_file=Path("outputs/test_timesheet.csv"))
 
     # TODO Add test for add end time
+    # TODO Add test for reset timesheet
 
 
 if __name__ == "__main__":
