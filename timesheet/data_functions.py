@@ -1,6 +1,24 @@
 from datetime import date, time, datetime, timedelta  # working with dates and times
 from pathlib import Path  # handling file paths
 import pandas as pd  # creating dummy data
+import re  # string matching
+
+
+def check_string_pattern_match(string: str, pattern: str):
+    """Check string matches pattern and throw error if not
+
+    Args:
+        string (str): input string to match against pattern
+        pattern (str): input pattern to match against string
+
+    Raises:
+        Exception: if string doesn't match pattern
+    """
+
+    if not re.match(pattern, string):
+        raise Exception(
+            f"String provided ({string}) doesn't match pattern ({pattern})!"
+        )
 
 
 def format_datetime_columns_to_strings(my_timesheet: pd.DataFrame) -> pd.DataFrame:
