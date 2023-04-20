@@ -63,6 +63,8 @@ class TestDataFunctions(unittest.TestCase):
             "Check time difference calculation",
         )
 
+    # TODO Add test for checking string format
+
 
 if __name__ == "__main__":
     unittest.main()
