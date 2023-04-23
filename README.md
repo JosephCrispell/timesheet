@@ -95,7 +95,7 @@ For more information see:
 ### Updating coverage badge
 To update the coverage badger of this README run:
 ```python
-python scripts/update_test_coverage.py
+python scripts/update_test_coverage_badge.py
 ```
 This script uses the [`coverage`](https://coverage.readthedocs.io/) python package to generate a coverage report and then feeds overall test coverage value into badge for this README.
 > Note must be ran from repository root as shown in above codeblock
