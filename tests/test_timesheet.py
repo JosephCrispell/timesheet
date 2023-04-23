@@ -138,8 +138,108 @@ class TestTimesheet(unittest.TestCase):
         # Add start time and test to empty timesheet
         self.add_start_time_and_test(timesheet_file=Path("outputs/test_timesheet.csv"))
 
-    # TODO Add test for add end time
-    # TODO Add test for reset timesheet
+    def test_reset_timesheet(self):
+        """Test timesheet is reset correctly"""
+
+        # Create a dummy timesheet
+        timesheet_file = Path("outputs/test_timesheet.csv")
+        data_functions.create_dummy_timesheet(file_name=timesheet_file)
+
+        # Load dummy timesheet
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Reset timesheet
+        my_timesheet.reset_timesheet()
+
+        # Check timesheet empty
+        self.assertEqual(
+            0,
+            my_timesheet.timesheet.shape[0],
+            "Resetted timesheet is empty",
+        )
+
+        # Check no start and end times
+        self.assertEqual(
+            None,
+            my_timesheet.start_time,
+            "No start time after reset",
+        )
+        self.assertEqual(
+            None,
+            my_timesheet.end_time,
+            "No end time after reset",
+        )
+
+        # Remove timesheet
+        Path.unlink(timesheet_file)
+
+    def test_add_end_time_with_dummy_timesheet(self):
+        """Test adding end time time to timesheet"""
+
+        # Create a dummy timesheet
+        timesheet_file = Path("outputs/test_timesheet.csv")
+        data_functions.create_dummy_timesheet(file_name=timesheet_file)
+
+        # Load dummy timesheet
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Add a start time
+        start_time_string = "08:34"
+        current_datetime = datetime.now()
+        current_date = current_datetime.date()
+        hours, minutes = map(int, start_time_string.split(":"))
+        my_timesheet.add_start_time(start_time_string)
+
+        # Add end time
+        end_time_string = "11:34"
+        current_datetime = datetime.now()
+        current_date = current_datetime.date()
+        hours, minutes = map(int, end_time_string.split(":"))
+        end_time_datetime = datetime.combine(
+            current_date, time(hour=hours, minute=minutes)
+        )
+        my_timesheet.add_end_time(end_time_string)
+
+        # Check start time is now None
+        self.assertEqual(
+            None,
+            my_timesheet.start_time,
+            "No start time after adding end time",
+        )
+
+        # Check end time added
+        self.assertEqual(
+            my_timesheet.end_time,
+            end_time_datetime,
+            "Check end time added matches end time provided",
+        )
+
+        # Check end time written to file
+        my_timesheet_data = pd.read_csv(timesheet_file)
+        self.assertEqual(
+            end_time_string,
+            my_timesheet_data.iloc[-1:].end_time.item(),
+            "Check end time written to file",
+        )
+
+        # Check timesheet loading
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Remove timesheet
+        Path.unlink(timesheet_file)
+
+    def test_add_end_time_with_empty_timesheet(self):
+
+        # Create empty timesheet
+        timesheet_file = Path("outputs/test_timesheet.csv")
+        my_timesheet = timesheet.Timesheet(file_name=timesheet_file)
+
+        # Check raises exception when try to add end time without start time
+        with self.assertRaises(Exception):
+            my_timesheet.add_end_time()
+
+        # Remove timesheet
+        Path.unlink(timesheet_file)
 
 
 if __name__ == "__main__":
