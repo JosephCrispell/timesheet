@@ -1,1 +1,6 @@
 pre-commit
+pathlib
+pandas
+datetime
+warnings
+coverage
