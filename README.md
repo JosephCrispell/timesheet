@@ -21,13 +21,22 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
 📦timesheet
  ┣ 📂outputs
  ┃ ┣ 📜.gitkeep
+ ┃ ┣ 📜test_timesheet_DEV.csv
+ ┃ ┗ 📜timesheet.csv
  ┣ 📂scripts
- ┃ ┗ 📜main.py
+ ┃ ┣ 📜main.py
+ ┃ ┗ 📜update_test_coverage_badge.py
  ┣ 📂tests
- ┃ ┗ 📜test_timesheet.py
+ ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜test_data_functions.py
+ ┃ ┣ 📜test_timesheet.py
+ ┃ ┗ 📜test_unittest_coverage_functions.py
  ┣ 📂timesheet
+ ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜data_functions.py
  ┃ ┣ 📜timesheet.py
- ┃ ┗ 📜__init__.py
+ ┃ ┗ 📜unittest_coverage_functions.py
+ ┣ 📜.coverage
  ┣ 📜.gitignore
  ┣ 📜.pre-commit-config.yaml
  ┣ 📜LICENSE
@@ -37,22 +46,32 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
 ```
 
 ## Workflow
-I created the following simple diagram using [mermaid]() to show how the code and outputs link together.
+I created the following simple diagram using [mermaid](https://mermaid.js.org/) to show how the code and outputs link together.
 
 ```mermaid
   graph TD
     timesheet[timesheet/timesheet.py] --> data(outputs/timesheet.csv);
     data .-> timesheet;
+    data_functions[timesheet/data_functions.py] .-> timesheet;
     timesheet .->|interaction| test_timesheet[tests/test_timesheet.py];
-    dummy_data_functions[tests/dummy_data_functions.py] .-> test_timesheet
+    data_functions .-> test_data_functions[tests/dummy_data_functions.py];
     test_timesheet -->|creation or updating| test_data(outputs/test_timesheet.csv);
     test_data .-> timesheet;
-    timesheet .-> test_data;
+    data_functions .-> test_data;
     timesheet .-> main[scripts/main.py];
     subgraph "key"
         k1[script];
         k2(output);
     end
+    coverage_functions[timesheet/unittest_coverage_functions.py] .-> update_coverage_badge[scripts/update_coverage_badge.py];
+    coverage_functions .-> test_coverage[tests/test_unittest_coverage_functions.py];
+    update_coverage_badge --> readme[README];
+    subgraph "unittests"
+        test_timesheet[tests/test_timesheet.py];
+        test_data_functions[tests/dummy_data_functions.py];
+        test_coverage[tests/test_unittest_coverage_functions.py];
+    end
+    unittests .-> update_coverage_badge
 ```
 
 
