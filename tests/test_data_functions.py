@@ -63,7 +63,13 @@ class TestDataFunctions(unittest.TestCase):
             "Check time difference calculation",
         )
 
-    # TODO Add test for checking string format
+    def test_check_string_pattern_match(self):
+
+        # Check raises exception when string format wrong
+        with self.assertRaises(Exception):
+            data_functions.check_string_pattern_match(
+                string="08:00", patten=r"[0-9]-[0-9]"
+            ),
 
 
 if __name__ == "__main__":
