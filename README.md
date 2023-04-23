@@ -68,7 +68,7 @@ I created the following simple diagram using [mermaid](https://mermaid.js.org/) 
     update_coverage_badge --> readme[README];
     subgraph "unittests"
         test_timesheet[tests/test_timesheet.py];
-        test_data_functions[tests/dummy_data_functions.py];
+        test_data_functions[tests/test_data_functions.py];
         test_coverage[tests/test_unittest_coverage_functions.py];
     end
     unittests .-> update_coverage_badge
