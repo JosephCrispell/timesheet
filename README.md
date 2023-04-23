@@ -21,13 +21,22 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
 📦timesheet
  ┣ 📂outputs
  ┃ ┣ 📜.gitkeep
+ ┃ ┣ 📜test_timesheet_DEV.csv
+ ┃ ┗ 📜timesheet.csv
  ┣ 📂scripts
- ┃ ┗ 📜main.py
+ ┃ ┣ 📜main.py
+ ┃ ┗ 📜update_test_coverage_badge.py
  ┣ 📂tests
- ┃ ┗ 📜test_timesheet.py
+ ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜test_data_functions.py
+ ┃ ┣ 📜test_timesheet.py
+ ┃ ┗ 📜test_unittest_coverage_functions.py
  ┣ 📂timesheet
+ ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜data_functions.py
  ┃ ┣ 📜timesheet.py
- ┃ ┗ 📜__init__.py
+ ┃ ┗ 📜unittest_coverage_functions.py
+ ┣ 📜.coverage
  ┣ 📜.gitignore
  ┣ 📜.pre-commit-config.yaml
  ┣ 📜LICENSE
