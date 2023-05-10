@@ -1,4 +1,5 @@
-from timesheet import timesheet
+# Local imports
+from timesheet import timesheet  # time sheet class
 
 
 def main():
@@ -15,5 +16,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    # TODO build command line interface
