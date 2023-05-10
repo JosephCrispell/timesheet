@@ -1,5 +1,5 @@
  [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
- ![Code Coverage](https://img.shields.io/badge/coverage-95.0%25-green)
+ ![Code Coverage](https://img.shields.io/badge/coverage-90.5%25-green)
 
 # timesheet
 [IN DEVELOPMENT] a tool for tracking the hours you work
