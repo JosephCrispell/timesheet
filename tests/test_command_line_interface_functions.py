@@ -72,9 +72,5 @@ class TestCommandLineInterfaceFunctions(unittest.TestCase):
         Path.unlink(timesheet_file)
 
 
-# TODO add test for build_command_line_interface
-# TODO add test for parse_command_line_arguments
-
-
 if __name__ == "__main__":
     unittest.main()
