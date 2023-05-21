@@ -1,7 +1,8 @@
 # Load packages
 import argparse  # parsing command line arguments
 from pathlib import Path  # handling file paths
-from datetime import time, datetime  # working with dates and times
+from datetime import datetime  # working with dates and times
+import sys  # accessing command line arguments
 
 # Local imports
 from timesheet import timesheet
@@ -37,7 +38,7 @@ def build_command_line_interface() -> argparse.ArgumentParser:
         default="outputs/timesheet.csv",  # Default value
         metavar="timesheet_file_path",
         type=str,
-        help="Provide file for timesheet.",
+        help="Provide file for timesheet (note if note created this will create file).",
     )
     parser.add_argument(
         "-r",
@@ -69,15 +70,21 @@ def build_command_line_interface() -> argparse.ArgumentParser:
     return parser
 
 
-def parse_command_line_arguments(parser: argparse.ArgumentParser):
+def parse_command_line_arguments(
+    parser: argparse.ArgumentParser, arguments: list[str] = sys.argv[1:]
+):
     """Parse command line arguments based on parser provided
 
     Args:
         parser (argparse.ArgumentParser): command line argument parser
+        arguments (list[str]): list of command line arguments passed to parser.parse_args(), which isn't
+            required normally but this measn we can unittest
+            (see: https://stackoverflow.com/questions/18160078/how-do-you-write-tests-for-the-argparse-portion-of-a-python-module).
+            Defaults to sys.argv[:1] (arguments minus script name).
     """
 
     # Get arguments
-    args = parser.parse_args()
+    args = parser.parse_args(arguments)
 
     # Load timesheet
     my_timesheet = timesheet.Timesheet(file_name=Path(args.file))
@@ -92,4 +99,4 @@ def parse_command_line_arguments(parser: argparse.ArgumentParser):
 
     # Check if adding end time
     if args.end:
-        my_timesheet.add_end_time(start_time_string=args.end)
+        my_timesheet.add_end_time(end_time_string=args.end)
