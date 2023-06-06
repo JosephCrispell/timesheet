@@ -10,9 +10,24 @@ After running:
 pip3 install -e .
 ```
 
-Run `scripts/main.py` with:
+Run `scripts/command_line_interface.py` with:
 ```bash
-python3 scripts/main.py
+python3 scripts/command_line_interface.py --help
+```
+```
+usage: command_line_interface.py [-h] [-f [timesheet_file_path]] [-r] [-s [hh:mm]] [-e [hh:mm]]
+
+Welcome to timesheet, a tool to help you log the hours you work. You are using the command line interface for timesheet.
+
+options:
+  -h, --help    show this help message and exit
+  -f [timesheet_file_path], --file [timesheet_file_path]
+                Provide file for timesheet (note if not created this will create file). (default: outputs/timesheet.csv)
+  -r, --reset   Reset the timesheet file provided with file (-f/--file) argument. (default: False)
+  -s [hh:mm], --start [hh:mm]
+                Add start time (hh:mm) to timesheet file provided with file (-f/--file) argument. (default: None)
+  -e [hh:mm], --end [hh:mm]
+                Add end time (hh:mm) to timesheet file provided with file (-f/--file) argument. (default: None)
 ```
 
 ## Package structure

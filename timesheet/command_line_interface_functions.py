@@ -38,7 +38,7 @@ def build_command_line_interface() -> argparse.ArgumentParser:
         default="outputs/timesheet.csv",  # Default value
         metavar="timesheet_file_path",
         type=str,
-        help="Provide file for timesheet (note if note created this will create file).",
+        help="Provide file for timesheet (note if not created this will create file).",
     )
     parser.add_argument(
         "-r",
