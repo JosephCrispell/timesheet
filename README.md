@@ -5,14 +5,22 @@
 [IN DEVELOPMENT] a tool for tracking the hours you work
 
 ## Running in the command line
-After running:
+
+### Install `timesheet`
+Clone the repository with (onote this is for https based link, change to suit your setup):
 ```bash
-pip3 install -e .
+git clone https://github.com/JosephCrispell/timesheet.git
+```
+And install by navigating to repository and running:
+
+```bash
+pip install .
 ```
 
+### Interact with command line interface
 Run `scripts/command_line_interface.py` with:
 ```bash
-python3 scripts/command_line_interface.py --help
+python scripts/command_line_interface.py --help
 ```
 ```
 usage: command_line_interface.py [-h] [-f [timesheet_file_path]] [-r] [-s [hh:mm]] [-e [hh:mm]]
@@ -28,6 +36,29 @@ options:
                 Add start time (hh:mm) to timesheet file provided with file (-f/--file) argument. (default: None)
   -e [hh:mm], --end [hh:mm]
                 Add end time (hh:mm) to timesheet file provided with file (-f/--file) argument. (default: None)
+```
+
+## Working with `timesheet` package directly
+Here's some example code to get you started working with the `timesheet` package:
+```python
+# Package imports
+from timesheet import timesheet  # import timesheet class
+
+# Define main
+def main():
+
+    # Get timesheet
+    my_timesheet = timesheet.Timesheet() # defaults to outputs/timesheet.csv
+
+    # Add start time
+    my_timesheet.add_start_time()
+
+    # Add end time
+    my_timesheet.add_end_time()
+
+# Run on source
+if __name__ == "__main__":
+    main()
 ```
 
 ## Package structure
@@ -96,6 +127,18 @@ I created the following simple diagram using [mermaid](https://mermaid.js.org/) 
 
 ## For development
 
+### Install `timesheet`
+Clone the repository with (onote this is for https based link, change to suit your setup):
+```bash
+git clone https://github.com/JosephCrispell/timesheet.git
+```
+
+And install by navigating to repository and running:
+```bash
+pip install -e .
+```
+Note the `-e` in above means the package will automatically update as you change the codebase.
+
 ### `precommit` installation
 
 Install python `pre-commit` with:
@@ -113,17 +156,17 @@ The hooks within `.pre-commit-config.yaml` will now be triggered every time you 
 ### Running tests
 Unit tests for package are in `tests/` can be ran all together or individually, after running:
 ```bash
-pip3 install -e .
+pip install -e .
 ```
 
 To run all tests together:
 ```bash
-python3 -m unittest
+python -m unittest
 ```
 
 To run specific tests on `timesheet.py`:
 ```bash
-python3 tests/test_timesheet.py
+python tests/test_timesheet.py
 ```
 
 For more information see:
