@@ -59,17 +59,21 @@ I created the following simple diagram using [mermaid](https://mermaid.js.org/) 
     test_data .-> timesheet;
     data_functions .-> test_data;
     timesheet .-> main[scripts/main.py];
+    cli_functions[timesheet/command_line_interface_functions.py] .-> cli[scripts/command_line_interface.py];
+    cli_functions .-> test_cli
+    timesheet .-> cli
     subgraph "key"
         k1[script];
         k2(output);
     end
     coverage_functions[timesheet/unittest_coverage_functions.py] .-> update_coverage_badge[scripts/update_coverage_badge.py];
     coverage_functions .-> test_coverage[tests/test_unittest_coverage_functions.py];
-    update_coverage_badge --> readme[README];
+    update_coverage_badge --> readme[README.md];
     subgraph "unittests"
         test_timesheet[tests/test_timesheet.py];
-        test_data_functions[tests/dummy_data_functions.py];
+        test_data_functions[tests/test_dummy_data_functions.py];
         test_coverage[tests/test_unittest_coverage_functions.py];
+        test_cli[tests/test_command_line_interface_functions.py];
     end
     unittests .-> update_coverage_badge
 ```
