@@ -5,6 +5,9 @@ outputs/*
 # VS code
 .vscode/*
 
+# sphinx build files
+docs/build/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
