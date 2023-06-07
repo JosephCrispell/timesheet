@@ -1,7 +1,7 @@
 # Load packages
 import unittest  # running tests
 from pathlib import Path  # handling file paths
-import pandas as pd  # creating dummy data
+import pandas as pd  # working with dummy data
 from datetime import time, datetime  # working with dates and times
 
 # Local imports

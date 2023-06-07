@@ -6,3 +6,5 @@ timesheet
 
 __version__ = "dev"
 __author__ = "Joseph Crispell"
+
+# TODO Create Sphinx documentation: https://www.sphinx-doc.org/en/master/usage/quickstart.html
