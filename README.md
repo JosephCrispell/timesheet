@@ -7,7 +7,7 @@
 ## Running in the command line
 
 ### Install `timesheet`
-Clone the repository with (onote this is for https based link, change to suit your setup):
+Clone the repository with (note this is for https based link, change to suit your setup):
 ```bash
 git clone https://github.com/JosephCrispell/timesheet.git
 ```
