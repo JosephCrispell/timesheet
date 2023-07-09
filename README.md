@@ -8,6 +8,9 @@ Timesheet is a simple python package that enables you to track the hours you wor
 
 <img src="images/timesheet_demo.svg" alt="timesheet logo">
 
+# Plans for further development
+- TODO calculate hours per day #1
+
 ## Running in the command line
 
 ### Install `timesheet`
@@ -67,6 +70,7 @@ if __name__ == "__main__":
 
 ## Package structure
 Directory tree generated using [file-tree-generator](https://marketplace.visualstudio.com/items?itemName=Shinotatwu-DS.file-tree-generator) Visual Studio Code extension:
+TODO need to update file tree
 ```
 📦timesheet
  ┣ 📂outputs
