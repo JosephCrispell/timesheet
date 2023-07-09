@@ -9,7 +9,7 @@ Timesheet is a simple python package that enables you to track the hours you wor
 <img src="images/timesheet_demo.svg" alt="timesheet logo">
 
 # Plans for further development
-- TODO calculate hours per day #1
+- TODO calculate hours per day [#5](https://github.com/JosephCrispell/timesheet/issues/5)
 
 ## Running in the command line
 
