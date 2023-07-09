@@ -1,8 +1,12 @@
  [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
  ![Code Coverage](https://img.shields.io/badge/coverage-95.1%25-green)
 
+<img src="images/timesheet_logo.svg" alt="timesheet logo" align="left" width="10%">
+
 # timesheet
-[IN DEVELOPMENT] a tool for tracking the hours you work
+Timesheet is a simple python package that enables you to track the hours you work via the command line. Information for the hours you work are stored in a simple CSV structure. See the screen grabs below to give you and idea of how it works.
+
+<img src="images/timesheet_demo.svg" alt="timesheet logo">
 
 ## Running in the command line
 
