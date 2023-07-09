@@ -70,23 +70,27 @@ if __name__ == "__main__":
 
 ## Package structure
 Directory tree generated using [file-tree-generator](https://marketplace.visualstudio.com/items?itemName=Shinotatwu-DS.file-tree-generator) Visual Studio Code extension:
-TODO need to update file tree
 ```
 📦timesheet
+ ┣ 📂images
+ ┃ ┣ 📜timesheet_demo.svg
+ ┃ ┗ 📜timesheet_logo.svg
  ┣ 📂outputs
- ┃ ┣ 📜.gitkeep
  ┃ ┣ 📜test_timesheet_DEV.csv
  ┃ ┗ 📜timesheet.csv
  ┣ 📂scripts
+ ┃ ┣ 📜command_line_interface.py
  ┃ ┣ 📜main.py
  ┃ ┗ 📜update_test_coverage_badge.py
  ┣ 📂tests
  ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜test_command_line_interface_functions.py
  ┃ ┣ 📜test_data_functions.py
  ┃ ┣ 📜test_timesheet.py
  ┃ ┗ 📜test_unittest_coverage_functions.py
  ┣ 📂timesheet
  ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜command_line_interface_functions.py
  ┃ ┣ 📜data_functions.py
  ┃ ┣ 📜timesheet.py
  ┃ ┗ 📜unittest_coverage_functions.py
