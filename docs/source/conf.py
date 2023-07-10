@@ -16,13 +16,12 @@ import sys
 sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath(".."))
 
-# TODO Update first page (index.rst)
-
 # -- Project information -----------------------------------------------------
 
 project = "timesheet"
 copyright = "2023, Joseph Crispell"
 author = "Joseph Crispell"
+html_favicon = "../../images/timesheet_logo.svg"
 
 # The full version, including alpha/beta/rc tags
 release = "dev"
