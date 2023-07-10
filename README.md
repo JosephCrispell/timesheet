@@ -4,9 +4,9 @@
 <img src="images/timesheet_logo.svg" alt="timesheet logo" align="left" width="10%">
 
 # timesheet
-Timesheet is a simple python package that enables you to track the hours you work via the command line. Information for the hours you work are stored in a simple CSV structure. See the screen grabs below to give you and idea of how it works.
+`timesheet` is a simple python package that enables you to track the hours you work via the command line. Information for the hours you work are stored in a simple CSV structure. See the screen grabs below to give you and idea of how it works.
 
-<img src="images/timesheet_demo.svg" alt="timesheet logo">
+<img src="images/timesheet_demo.svg" alt="timesheet in action">
 
 # Plans for further development
 - TODO calculate hours per day [#5](https://github.com/JosephCrispell/timesheet/issues/5)
