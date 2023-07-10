@@ -81,6 +81,7 @@ def parse_command_line_arguments(
             required normally but this measn we can unittest
             (see: https://stackoverflow.com/questions/18160078/how-do-you-write-tests-for-the-argparse-portion-of-a-python-module).
             Defaults to sys.argv[:1] (arguments minus script name).
+
     """
 
     # Get arguments

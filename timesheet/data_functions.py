@@ -30,6 +30,7 @@ def format_datetime_columns_to_strings(my_timesheet: pd.DataFrame) -> pd.DataFra
     start_time: hh:mm
     end_time: hh:mm
     time_worked: hh:mm
+
     Args:
         my_timesheet (pd.DataFrame): dataframe containing timesheet
 
@@ -150,12 +151,12 @@ def create_dummy_timesheet(file_name: Path):
         "end_time": end_times,
         "time_worked": map(str, calculate_time_differences(start_times, end_times)),
         "notes": [
-            "nothing off note",
+            "nothing of note",
             "",
-            "nothing off note",
-            "nothing off note",
-            "nothing off note",
-            "nothing off note",
+            "nothing of note",
+            "nothing of note",
+            "nothing of note",
+            "nothing of note",
             "a simple note",
             "nothing off note",
         ],

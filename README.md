@@ -1,13 +1,20 @@
  [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
  ![Code Coverage](https://img.shields.io/badge/coverage-95.1%25-green)
 
+<img src="images/timesheet_logo.svg" alt="timesheet logo" align="left" width="10%">
+
 # timesheet
-[IN DEVELOPMENT] a tool for tracking the hours you work
+`timesheet` is a simple python package that enables you to track the hours you work via the command line. Information for the hours you work are stored in a simple CSV structure. See the screen grabs below to give you and idea of how it works.
+
+<img src="images/timesheet_demo.svg" alt="timesheet in action">
+
+# Plans for further development
+- TODO calculate hours per day [#5](https://github.com/JosephCrispell/timesheet/issues/5)
 
 ## Running in the command line
 
 ### Install `timesheet`
-Clone the repository with (onote this is for https based link, change to suit your setup):
+Clone the repository with (note this is for https based link, change to suit your setup):
 ```bash
 git clone https://github.com/JosephCrispell/timesheet.git
 ```
@@ -65,20 +72,25 @@ if __name__ == "__main__":
 Directory tree generated using [file-tree-generator](https://marketplace.visualstudio.com/items?itemName=Shinotatwu-DS.file-tree-generator) Visual Studio Code extension:
 ```
 📦timesheet
+ ┣ 📂images
+ ┃ ┣ 📜timesheet_demo.svg
+ ┃ ┗ 📜timesheet_logo.svg
  ┣ 📂outputs
- ┃ ┣ 📜.gitkeep
  ┃ ┣ 📜test_timesheet_DEV.csv
  ┃ ┗ 📜timesheet.csv
  ┣ 📂scripts
+ ┃ ┣ 📜command_line_interface.py
  ┃ ┣ 📜main.py
  ┃ ┗ 📜update_test_coverage_badge.py
  ┣ 📂tests
  ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜test_command_line_interface_functions.py
  ┃ ┣ 📜test_data_functions.py
  ┃ ┣ 📜test_timesheet.py
  ┃ ┗ 📜test_unittest_coverage_functions.py
  ┣ 📂timesheet
  ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜command_line_interface_functions.py
  ┃ ┣ 📜data_functions.py
  ┃ ┣ 📜timesheet.py
  ┃ ┗ 📜unittest_coverage_functions.py
@@ -127,7 +139,7 @@ I created the following simple diagram using [mermaid](https://mermaid.js.org/) 
 
 ## For development
 
-### Install `timesheet`
+### Install `timesheet` ⏰
 Clone the repository with (onote this is for https based link, change to suit your setup):
 ```bash
 git clone https://github.com/JosephCrispell/timesheet.git
@@ -139,7 +151,7 @@ pip install -e .
 ```
 Note the `-e` in above means the package will automatically update as you change the codebase.
 
-### `precommit` installation
+### `precommit` installation ✔
 
 Install python `pre-commit` with:
 ```bash
@@ -153,7 +165,7 @@ pre-commit install
 
 The hooks within `.pre-commit-config.yaml` will now be triggered every time you use the `git commit` command. For more information see [pre-commit.com/](https://pre-commit.com/).
 
-### Running tests
+### Running tests 🧪
 Unit tests for package are in `tests/` can be ran all together or individually, after running:
 ```bash
 pip install -e .
@@ -173,10 +185,21 @@ For more information see:
 - [`unittest`](https://docs.python.org/3/library/unittest.html) package
 - [Tutorial I found helpful](https://realpython.com/python-testing/)
 
-### Updating coverage badge
+### Updating coverage badge 🦡
 To update the coverage badger of this README run:
 ```python
 python scripts/update_test_coverage_badge.py
 ```
 This script uses the [`coverage`](https://coverage.readthedocs.io/) python package to generate a coverage report and then feeds overall test coverage value into badge for this README.
 > Note must be ran from repository root as shown in above codeblock
+
+### Building the docs 🔨📚
+The documentation for the `timesheet` package is built using [Sphinx](https://pypi.org/project/Sphinx/). To build and view the documentation (note still in a crude state) follow these steps:
+1. Install sphinx: `pip install Sphinx`
+2. Navigate to `docs/` and run `make html`
+3. Open a file browser and navigate to and double click on `docs/build/html/index.html`
+
+For more information see:
+- [Sphinx documentation](https://www.sphinx-doc.org/en/master/)
+- [Intro to sphinx documentation](https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html)
+- [this great blog](https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/)
