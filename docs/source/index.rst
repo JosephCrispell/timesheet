@@ -6,11 +6,18 @@
 Welcome to timesheet's documentation!
 =====================================
 
-`timesheet` is a pip package to help you log the hours you work.
+.. image:: ../../images/timesheet_logo.svg
+  :width: 100
+  :alt: timesheet logo
+
+`timesheet`` is a simple python package that enables you to track the hours you work via the command line. Information for the hours you work are stored in a simple CSV structure. See the screen grabs below to give you and idea of how it works.
+
+.. image:: ../../images/timesheet_demo.svg
+  :alt: timesheet in action
 
 .. note::
 
-   This project is under active development.
+   This project is under development.
 
 .. toctree::
    :maxdepth: 2
