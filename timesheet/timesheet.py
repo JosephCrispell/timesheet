@@ -5,7 +5,7 @@ from datetime import time, datetime  # working with dates and times
 import warnings  # writing warnings
 
 # Local imports
-from . import data_functions  # general functions for working with data
+from timesheet import data_functions  # general functions for working with data
 
 
 class Timesheet:
