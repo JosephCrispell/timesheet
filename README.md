@@ -25,9 +25,9 @@ pip install .
 ```
 
 ### Interact with command line interface
-Run `scripts/command_line_interface.py` with:
+Run the `timesheet` command line interface with:
 ```bash
-python scripts/command_line_interface.py --help
+python -m timesheet --help
 ```
 ```
 usage: command_line_interface.py [-h] [-f [timesheet_file_path]] [-r] [-s [hh:mm]] [-e [hh:mm]]
@@ -79,8 +79,6 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
  ┃ ┣ 📜test_timesheet_DEV.csv
  ┃ ┗ 📜timesheet.csv
  ┣ 📂scripts
- ┃ ┣ 📜command_line_interface.py
- ┃ ┣ 📜main.py
  ┃ ┗ 📜update_test_coverage_badge.py
  ┣ 📂tests
  ┃ ┣ 📜__init__.py
@@ -90,6 +88,7 @@ Directory tree generated using [file-tree-generator](https://marketplace.visuals
  ┃ ┗ 📜test_unittest_coverage_functions.py
  ┣ 📂timesheet
  ┃ ┣ 📜__init__.py
+ ┃ ┣ 📜__main__.py
  ┃ ┣ 📜command_line_interface_functions.py
  ┃ ┣ 📜data_functions.py
  ┃ ┣ 📜timesheet.py
@@ -116,8 +115,7 @@ I created the following simple diagram using [mermaid](https://mermaid.js.org/) 
     test_timesheet -->|creation or updating| test_data(outputs/test_timesheet.csv);
     test_data .-> timesheet;
     data_functions .-> test_data;
-    timesheet .-> main[scripts/main.py];
-    cli_functions[timesheet/command_line_interface_functions.py] .-> cli[scripts/command_line_interface.py];
+    cli_functions[timesheet/command_line_interface_functions.py] .-> cli[timesheet/__main__.py];
     cli_functions .-> test_cli
     timesheet .-> cli
     subgraph "key"
