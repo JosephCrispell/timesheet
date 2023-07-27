@@ -26,6 +26,7 @@ def build_command_line_interface() -> argparse.ArgumentParser:
 
     # Initialize parser
     parser = argparse.ArgumentParser(
+        prog="timesheet",
         description=welcome_message,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,  # Shows default values for parameters
     )
