@@ -5,7 +5,9 @@ from datetime import time, datetime  # working with dates and times
 import warnings  # writing warnings
 
 # Local imports
-from timesheet import data_functions  # general functions for working with data
+from timesheet import (
+    data_functions as ts_data,
+)  # general functions for working with data
 
 
 class Timesheet:
@@ -96,7 +98,7 @@ class Timesheet:
         if start_time_string != None:
 
             # Check string format
-            data_functions.check_string_pattern_match(
+            ts_data.check_string_pattern_match(
                 start_time_string, pattern=r"[0-9][0-9]:[0-9][0-9]"
             )
 
@@ -149,7 +151,7 @@ class Timesheet:
         my_timesheet = self.timesheet.copy()
 
         # Format the date and time columns as strings
-        my_timesheet = data_functions.format_datetime_columns_to_strings(my_timesheet)
+        my_timesheet = ts_data.format_datetime_columns_to_strings(my_timesheet)
 
         # Write to file
         my_timesheet.to_csv(self.file_name, index=False)
@@ -173,7 +175,7 @@ class Timesheet:
         if end_time_string != None:
 
             # Check string format
-            data_functions.check_string_pattern_match(
+            ts_data.check_string_pattern_match(
                 end_time_string, pattern=r"[0-9][0-9]:[0-9][0-9]"
             )
 

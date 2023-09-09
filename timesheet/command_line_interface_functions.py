@@ -5,7 +5,7 @@ from datetime import datetime  # working with dates and times
 import sys  # accessing command line arguments
 
 # Local imports
-from timesheet import timesheet
+from timesheet import timesheet as ts
 
 
 def build_command_line_interface() -> argparse.ArgumentParser:
@@ -89,7 +89,7 @@ def parse_command_line_arguments(
     args = parser.parse_args(arguments)
 
     # Load timesheet
-    my_timesheet = timesheet.Timesheet(file_name=Path(args.file))
+    my_timesheet = ts.Timesheet(file_name=Path(args.file))
 
     # Check if resetting timesheet
     if args.reset:
